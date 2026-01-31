@@ -2,7 +2,7 @@ import Style from "./Form.module.css";
 
 const Form = () => {
   return (
-    <div className={Style.container}>
+    <>
       <form onSubmit={(e) => e.preventDefault()} className={Style.form}>
         <div className={Style.field}>
           <label>Tantárgy</label>
@@ -47,7 +47,7 @@ const Form = () => {
 
         <button type="submit" className={Style.submitBtn}>Felvétel</button>
       </form>
-    </div>
+    </>
   );
 };
 
