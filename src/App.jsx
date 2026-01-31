@@ -3,11 +3,15 @@ import { useState } from 'react'
 import Form from './modules/Form'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([])
 
+  const addData = (actualData) =>{
+    setData((prevData) => [...prevData, actualData])
+  }
+  console.log(data)
   return (
     <>
-      <Form />
+      <Form upToApp={addData}/>
     </>
   )
 }
