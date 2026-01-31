@@ -1,13 +1,90 @@
-.form{
+.container {
+  display: flex;
   justify-content: center;
   align-items: center;
-height: 15rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center ;
-  flex-wrap: wrap;
+  min-height: 100vh;
+
+  margin: 0;
+    background: #d400c6;
+background: linear-gradient(90deg, rgba(212, 0, 198, 1) 0%, rgba(80, 9, 121, 1) 35%, rgba(0, 0, 0, 1) 100%); 
 }
 
-.form input, textarea, select{
-    margin: 10px;
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px;
+  max-width: 600px;
+  width: 100%;
+
+  padding: 25px;
+  border-width: 1px;
+  border-style:solid;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-color:#007bff;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.fullWidth {
+  grid-column: span 2; 
+}
+
+.form input[type="text"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.radioGroup {
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.submitBtn {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: #0056b3;
+}
+
+
+@media (max-width: 480px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .fullWidth, .radioGroup, .submitBtn {
+    grid-column: span 1;
+  }
 }
