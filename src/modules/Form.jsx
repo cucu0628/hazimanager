@@ -28,7 +28,7 @@ const Form = ({upToApp}) => {
       <form onSubmit={(e) => e.preventDefault()} className={Style.form}>
         <div className={Style.field}>
           <label>Tantárgy</label>
-          <select>
+          <select onChange={(e) => setSubject(e.currentTarget.value)}>
             <option value="Angol">Angol</option>
             <option value="Magyar">Magyar</option>
             <option value="Matek">Matek</option>
