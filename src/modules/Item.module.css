@@ -24,13 +24,24 @@
     backdrop-filter: blur(10px);
 
     border-radius: 8px;
-    display: flex;
-    padding: 1rem;
-    justify-content: end;
+    display:flex;
+    justify-content: space-between;
+    padding: 0.2rem;
     text-transform: uppercase;
     font-size: larger;
 }
 
 .fullWidth {
     grid-column: span 2;
+    text-align: center;
+}
+
+.icon{
+
+    justify-content: right
+}
+
+.text{
+        
+    justify-content: left
 }
