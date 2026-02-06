@@ -1,0 +1,36 @@
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 600px;
+    width: 100%;
+
+    margin: 0 auto;
+
+
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    margin-top: 1rem;
+}
+
+
+
+.theme {
+    text-align: center;
+    margin: 0;
+    background-color: rgb(255 255 255 / 30%);
+    backdrop-filter: blur(10px);
+
+    border-radius: 8px;
+    display: flex;
+    padding: 1rem;
+    justify-content: end;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.fullWidth {
+    grid-column: span 2;
+}
