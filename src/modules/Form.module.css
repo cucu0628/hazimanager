@@ -70,12 +70,3 @@
   background-color: #0056b3;
 }
 
-
-@media (max-width: 480px) {
-  .form {
-    grid-template-columns: 1fr;
-  }
-  .fullWidth, .radioGroup, .submitBtn {
-    grid-column: span 1;
-  }
-}

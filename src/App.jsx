@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import Form from './modules/Form'
+import TopBar from './modules/TopBar'
 
 function App() {
   const [data, setData] = useState([])
@@ -11,6 +12,7 @@ function App() {
   console.log(data)
   return (
     <>
+    <TopBar />
       <Form upToApp={addData}/>
     </>
   )
