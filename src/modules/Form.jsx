@@ -1,24 +1,39 @@
 import { useState, useRef } from 'react'
 import Style from "./Form.module.css";
+import Swal from 'sweetalert2'
 
-const Form = ({upToApp}) => {
+const Form = ({ upToApp }) => {
 
   const [subject, setSubject] = useState("Angol")
-  const [type, setType] = useState()
-
+  const [type, setType] = useState("")
   const themeRef = useRef()
   const dateRef = useRef()
   const deadlineRef = useRef()
   const descriptionRef = useRef()
 
 
-  const Submit = () =>{
+  const Submit = () => {
     let theme = themeRef.current.value
     let date = dateRef.current.value
     let deadline = deadlineRef.current.value
     let description = descriptionRef.current.value
+    if (theme == "" || date == "" || deadline == "" || description == "" || subject == "" || type === "") {
+      Swal.fire({
+        theme: 'dark',
+        icon: "error",
+        title: "Nem jó",
+        text: "Töltsél ki minden adatot!",
+      });
 
-    upToApp({theme,date,deadline,description,subject,type})
+    } else {
+      Swal.fire({
+        theme: 'dark',
+        title: "Sikeres felvétel",
+        icon: "success",
+      });
+      upToApp({ theme, date, deadline, description, subject, type })
+    }
+
   }
 
 
@@ -39,17 +54,17 @@ const Form = ({upToApp}) => {
 
         <div className={Style.field}>
           <label>Témakör</label>
-          <input type="text" placeholder="Témakör megnevezése" ref={themeRef}/>
+          <input type="text" placeholder="Témakör megnevezése" ref={themeRef} />
         </div>
 
         <div className={Style.field}>
           <label>Feladás napja</label>
-          <input type="date" ref={dateRef}/>
+          <input type="date" ref={dateRef} />
         </div>
 
         <div className={Style.field}>
           <label>Határidő</label>
-          <input type="date" ref={deadlineRef}/>
+          <input type="date" ref={deadlineRef} />
         </div>
 
         <div className={`${Style.field} ${Style.fullWidth}`}>
@@ -60,10 +75,10 @@ const Form = ({upToApp}) => {
         <div className={`${Style.field} ${Style.radioGroup}`}>
           <p>Típus:</p>
           <label>
-            <input type="radio" name="tipus" id="elso" onClick={() => setType("Szóbeli")}/> Szóbeli
+            <input type="radio" name="tipus" id="elso" onClick={() => setType("Szóbeli")} /> Szóbeli
           </label>
           <label>
-            <input type="radio" name="tipus" id="masodik" onClick={() => setType("Írásbeli")}/> Írásbeli
+            <input type="radio" name="tipus" id="masodik" onClick={() => setType("Írásbeli")} /> Írásbeli
           </label>
         </div>
 
