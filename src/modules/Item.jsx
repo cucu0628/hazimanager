@@ -1,27 +1,43 @@
 import { useState } from 'react'
 import { RiSpeakFill } from "react-icons/ri";
 import { BsChatRightTextFill } from "react-icons/bs";
+import { FaExclamationTriangle } from "react-icons/fa";
+import { FcExpired } from "react-icons/fc";
+import moment from 'moment';
 
 import Style from "./Item.module.css"
 
-const Item = ({theme, date, deadline, description, subject, type}) =>{
+const Item = ({ theme, date, deadline, description, subject, type }) => {
     const [done, setDone] = useState(false);
-    return(
+    const ma = moment()
+    const deadlineMoment = moment(deadline, "YYYY-MM-DD")
+    const kulonbseg = deadlineMoment.diff(ma, "days") + 1
+    console.log({ kulonbseg })
+
+
+    return (
         <>
-        <div className={done == true ? Style.done : Style.notDone}>
-            <div className={`${Style.theme} ${Style.fullWidth}`}>
-                <p className={`${Style.text} ${Style.check}`}>{subject}</p>
-                <p className={Style.icon}>{type == "Szóbeli" ? <RiSpeakFill /> : <BsChatRightTextFill />}</p>
+            <div className={done == true ? Style.done : Style.notDone}>
+                <div className={`${Style.top} ${Style.fullWidth}`}>
+                    <p className={`${Style.text} ${Style.check}`}>{subject}</p>
+                    <p>{}</p>
+                    <p className={Style.icon}>{type == "Szóbeli" ? <RiSpeakFill /> : <BsChatRightTextFill />}</p>
+                </div>
+                <p className={`${Style.fullWidth} ${Style.theme}`}>Téma: {theme}</p>
+                <div className={Style.fullWidth}>
+                    <p >{date}</p>
+                    <p >{deadline}</p>
+                </div>
+                <p className={`${Style.fullWidth} ${kulonbseg <= 3 ? Style.warning : Style.notwarning}`}>
+                    {kulonbseg <= 3 && kulonbseg > 0 ? <FaExclamationTriangle /> : <FcExpired />}
+                    
+                </p>
+                <p className={Style.fullWidth}>{description}</p>
+                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={() => setDone(!done)} /> Kész</p>
+
+
             </div>
-            <h1 className={Style.fullWidth}>Téma: {theme}</h1>
-            <p className={Style.fullWidth}>{date}</p>
-            <p className={Style.fullWidth}>{deadline}</p>
-            <p className={Style.fullWidth}>{description}</p>
-            <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={() => setDone(!done)}/> Kész</p>
-            
-           
-        </div>
-            
+
         </>
     )
 }
