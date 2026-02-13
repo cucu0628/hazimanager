@@ -17,7 +17,7 @@ const Form = ({ upToApp }) => {
     let date = dateRef.current.value
     let deadline = deadlineRef.current.value
     let description = descriptionRef.current.value
-    if (theme == "" || date == "" || deadline == "" || description == "" || subject == "" || type === "") {
+    if (theme == "" || date == "" || deadline == "" || subject == "" || type === "") {
       Swal.fire({
         theme: 'dark',
         icon: "error",

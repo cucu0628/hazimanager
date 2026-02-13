@@ -7,14 +7,14 @@ import List from './modules/List'
 function App() {
   const [data, setData] = useState([])
 
-  const addData = (actualData) =>{
+  const addData = (actualData) => {
     setData((prevData) => [...prevData, actualData])
   }
   console.log(data)
   return (
     <>
-    <TopBar />
-      <Form upToApp={addData}/>
+      <TopBar />
+      <Form upToApp={addData} />
       <List adat={data} />
     </>
   )

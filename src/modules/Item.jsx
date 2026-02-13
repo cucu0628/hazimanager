@@ -4,6 +4,7 @@ import { BsChatRightTextFill } from "react-icons/bs";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { FcExpired } from "react-icons/fc";
 import moment from 'moment';
+import Swal from 'sweetalert2'
 
 import Style from "./Item.module.css"
 
@@ -20,7 +21,7 @@ const Item = ({ theme, date, deadline, description, subject, type }) => {
             <div className={done == true ? Style.done : Style.notDone}>
                 <div className={`${Style.top} ${Style.fullWidth}`}>
                     <p className={`${Style.text} ${Style.check}`}>{subject}</p>
-                    <p>{}</p>
+                    <p>{ }</p>
                     <p className={Style.icon}>{type == "Szóbeli" ? <RiSpeakFill /> : <BsChatRightTextFill />}</p>
                 </div>
                 <p className={`${Style.fullWidth} ${Style.theme}`}>Téma: {theme}</p>
@@ -30,10 +31,10 @@ const Item = ({ theme, date, deadline, description, subject, type }) => {
                 </div>
                 <p className={`${Style.fullWidth} ${kulonbseg <= 3 ? Style.warning : Style.notwarning}`}>
                     {kulonbseg <= 3 && kulonbseg > 0 ? <FaExclamationTriangle /> : <FcExpired />}
-                    
+
                 </p>
                 <p className={Style.fullWidth}>{description}</p>
-                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={() => setDone(!done)} /> Kész</p>
+                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={() => { setDone(!done); !done ? Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", }) : "" }} /> Kész</p>
 
 
             </div>
