@@ -13,7 +13,6 @@ const Item = ({ theme, date, deadline, description, subject, type }) => {
     const ma = moment()
     const deadlineMoment = moment(deadline, "YYYY-MM-DD")
     const kulonbseg = deadlineMoment.diff(ma, "days") + 1
-    console.log({ kulonbseg })
 
 
     return (

@@ -12,7 +12,7 @@ const Form = ({ upToApp }) => {
   const descriptionRef = useRef()
 
 
-  const Submit = () => {
+  const Submit = async () => {
     let theme = themeRef.current.value
     let date = dateRef.current.value
     let deadline = deadlineRef.current.value
@@ -26,12 +26,42 @@ const Form = ({ upToApp }) => {
       });
 
     } else {
-      Swal.fire({
-        theme: 'dark',
-        title: "Sikeres felvétel",
-        icon: "success",
-      });
-      upToApp({ theme, date, deadline, description, subject, type })
+
+      const add = await fetch("http://localhost:8080/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          theme: theme,
+          date: date,
+          deadline: deadline,
+          subject: subject,
+          type: type,
+          description: description
+        })
+      })
+
+      const data = await add.json()
+      console.log(data)
+
+      if (data.success && data.id) {
+        // Az egész data.data objektumot továbbítjuk, benne az ID-val
+        upToApp(data.data);
+
+        Swal.fire({
+          theme: 'dark',
+          title: "Sikeres felvétel",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          theme: 'dark',
+          icon: "error",
+          title: "Nem jó",
+          text: data.error || "Nem sikerült feltölteni",
+        });
+      }
+
+
     }
 
   }
