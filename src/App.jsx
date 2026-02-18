@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 import Form from './modules/Form'
 import TopBar from './modules/TopBar'
@@ -13,7 +14,33 @@ function App() {
     setData(data);
   };
 
-  
+  const deletData = async (id) => {
+    const del = await fetch("http://localhost:8080/del", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id
+      })
+    })
+
+    const torol = await del.json();
+    if (torol) {
+      setData((prevData) => prevData.filter(item => item.id !== id));
+      Swal.fire({
+        theme: "dark",
+        title: "Sikeres törlés",
+        icon: "success",
+      });
+    }else{
+      Swal.fire({
+        theme: "dark",
+        title: "Sikertelen törlés",
+        icon: "error",
+      });
+    }
+
+  }
+
   useEffect(() => {
     loadData();
   }, []);
@@ -26,7 +53,7 @@ function App() {
     <>
       <TopBar />
       <Form upToApp={addData} />
-      <List adat={data} />
+      <List adat={data} deletData={deletData} />
     </>
   )
 }

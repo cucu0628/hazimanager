@@ -3,23 +3,24 @@ import { RiSpeakFill } from "react-icons/ri";
 import { BsChatRightTextFill } from "react-icons/bs";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { FcExpired } from "react-icons/fc";
+import { FaTrash } from "react-icons/fa";
 import moment from 'moment';
 import Swal from 'sweetalert2'
 
 import Style from "./Item.module.css"
 
-const Item = ({ theme, date, deadline, description, subject, type, done, id }) => {
+const Item = ({ theme, date, deadline, description, subject, type, done, id , deletData}) => {
     const [doneState, setDone] = useState(done == 1);
     const ma = moment()
     const deadlineMoment = moment(deadline, "YYYY-MM-DD")
     const kulonbseg = deadlineMoment.diff(ma, "days") + 1
-    console.log(doneState)
 
 
-    const doneFgv = async() =>{
+
+    const doneFgv = async () => {
         setDone(!doneState); !doneState ? Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", }) : "";
         doneState ? done = 0 : done = 1;
-        const change = await fetch("http://localhost:8080/done",{
+        const change = await fetch("http://localhost:8080/done", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -31,6 +32,19 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id }) =
         console.log(changed)
     }
 
+    const del = () => {
+        Swal.fire({
+            theme: "dark",
+            title: "Szeretnéd törölni?",
+            showDenyButton: true,
+            confirmButtonText: "Igen",
+            denyButtonText: `Nem`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletData(id)
+            } 
+        });
+    }
 
     return (
         <>
@@ -50,7 +64,7 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id }) =
 
                 </p>
                 <p className={Style.fullWidth}>{description}</p>
-                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={doneFgv} defaultChecked={doneState}/> Kész</p>
+                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={doneFgv} defaultChecked={doneState} /> Kész <span onClick={del}><FaTrash /></span></p>
 
 
             </div>
