@@ -52,7 +52,6 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
             <div className={doneState == true ? Style.done : Style.notDone}>
                 <div className={`${Style.top} ${Style.fullWidth}`}>
                     <p className={`${Style.text} ${Style.check}`}>{subject}</p>
-                    <p>{ }</p>
                     <p className={Style.icon}>{type == "Szóbeli" ? <RiSpeakFill /> : <BsChatRightTextFill />}</p>
                 </div>
                 <p className={`${Style.fullWidth} ${Style.theme}`}>Téma: {theme}</p>
