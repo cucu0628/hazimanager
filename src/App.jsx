@@ -22,7 +22,6 @@ function App() {
         id: id
       })
     })
-
     const torol = await del.json();
     if (torol) {
       setData((prevData) => prevData.filter(item => item.id !== id));
@@ -46,7 +45,7 @@ function App() {
   }, []);
 
   const addData = (actualData) => {
-    setData((prevData) => [...prevData, actualData])
+    setData((prevData) => [actualData,...prevData])
   }
   console.log(data)
   return (

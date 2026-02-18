@@ -18,7 +18,7 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
 
 
     const doneFgv = async () => {
-        setDone(!doneState); !doneState ? Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", }) : "";
+        setDone(!doneState); doneState ? Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", }) : "";
         doneState ? done = 0 : done = 1;
         const change = await fetch("http://localhost:8080/done", {
             method: "POST",
