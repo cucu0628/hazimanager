@@ -36,7 +36,8 @@ const Form = ({ upToApp }) => {
           deadline: deadline,
           subject: subject,
           type: type,
-          description: description
+          description: description,
+          done: 0
         })
       })
 
@@ -44,7 +45,6 @@ const Form = ({ upToApp }) => {
       console.log(data)
 
       if (data.success && data.id) {
-        // Az egész data.data objektumot továbbítjuk, benne az ID-val
         upToApp(data.data);
 
         Swal.fire({
