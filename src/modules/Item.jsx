@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import Style from "./Item.module.css"
 
 const Item = ({ theme, date, deadline, description, subject, type, done, id , deletData}) => {
-    const [doneState, setDone] = useState(done == 1);
+    const [doneState, setDone] = useState(done);
     const ma = moment()
     const deadlineMoment = moment(deadline, "YYYY-MM-DD")
     const kulonbseg = deadlineMoment.diff(ma, "days") + 1
@@ -18,10 +18,18 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
 
 
     const doneFgv = async () => {
-        setDone(!doneState);
-        !doneState ? Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", }) : "";
-        doneState ? done = 0 : done = 1;
-        const change = await fetch("http://localhost:8080/done", {
+        
+        if(doneState == 0){
+            Swal.fire({ theme: 'dark', title: "Sikeresen megcsináltad", icon: "success", })
+        }
+        if(doneState == 1){
+            done = 0
+        }else if(doneState == 0){
+            done = 1
+        }
+        setDone(done)
+        console.log(done);
+        const change = await fetch("http://localhost/22c-adam/backend/index.php/done", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -32,6 +40,8 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
         const changed = await change.json()
         console.log(changed)
     }
+
+
 
     const del = () => {
         Swal.fire({
@@ -49,7 +59,7 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
 
     return (
         <>
-            <div className={doneState == true ? Style.done : Style.notDone}>
+            <div className={doneState == 1? Style.done : Style.notDone}>
                 <div className={`${Style.top} ${Style.fullWidth}`}>
                     <p className={`${Style.text} ${Style.check}`}>{subject}</p>
                     <p className={Style.icon}>{type == "Szóbeli" ? <RiSpeakFill /> : <BsChatRightTextFill />}</p>
@@ -64,7 +74,7 @@ const Item = ({ theme, date, deadline, description, subject, type, done, id , de
 
                 </p>
                 <p className={Style.fullWidth}>{description}</p>
-                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={doneFgv} defaultChecked={doneState} /> Kész <span onClick={del}><FaTrash /></span></p>
+                <p className={`${Style.fullWidth} ${Style.check}`}><input type="checkbox" onChange={doneFgv} defaultChecked={done == 1 ? true : false} /> Kész <span onClick={del}><FaTrash /></span></p>
 
 
             </div>

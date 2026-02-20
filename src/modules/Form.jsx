@@ -27,7 +27,7 @@ const Form = ({ upToApp }) => {
 
     } else {
 
-      const add = await fetch("http://localhost:8080/add", {
+      const add = await fetch("http://localhost/22c-adam/backend/index.php/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

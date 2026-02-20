@@ -9,13 +9,13 @@ function App() {
   const [data, setData] = useState([])
 
   const loadData = async () => {
-    const res = await fetch("http://localhost:8080/keres");
+    const res = await fetch("http://localhost/22c-adam/backend/index.php/keres");
     const data = await res.json();
     setData(data);
   };
 
   const deletData = async (id) => {
-    const del = await fetch("http://localhost:8080/del", {
+    const del = await fetch("http://localhost/22c-adam/backend/index.php/del", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -24,7 +24,8 @@ function App() {
     })
     const torol = await del.json();
     if (torol) {
-      setData((prevData) => prevData.filter(item => item.id !== id));
+      setData([]);
+      loadData();
       Swal.fire({
         theme: "dark",
         title: "Sikeres törlés",
@@ -44,8 +45,9 @@ function App() {
     loadData();
   }, []);
 
-  const addData = (actualData) => {
-    setData((prevData) => [actualData,...prevData])
+  const addData = () => {
+    setData([]);
+    loadData();
   }
   console.log(data)
   return (

@@ -1,5 +1,6 @@
 import Item from "./Item";
 
+
 const List = ({adat, deletData}) =>{
     return(
         <>
