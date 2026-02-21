@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b174d" />
+      <stop offset="40%" stop-color="#a62c7a" />
+      <stop offset="80%" stop-color="#f5558d" />
+      <stop offset="100%" stop-color="#ff9ba8" />
+    </linearGradient>
+    
+    <linearGradient id="lakeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d95a8c" />
+      <stop offset="100%" stop-color="#4a1854" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* Napsugarak / Glóriák animációja */
+    @keyframes pulse1 { 
+      0% { opacity: 0.4; transform: scale(0.95); } 
+      50% { opacity: 0.8; transform: scale(1.05); } 
+      100% { opacity: 0.4; transform: scale(0.95); } 
+    }
+    @keyframes pulse2 { 
+      0% { opacity: 0.3; transform: scale(0.95); } 
+      50% { opacity: 0.6; transform: scale(1.08); } 
+      100% { opacity: 0.3; transform: scale(0.95); } 
+    }
+    @keyframes pulse3 { 
+      0% { opacity: 0.2; transform: scale(0.95); } 
+      50% { opacity: 0.5; transform: scale(1.1); } 
+      100% { opacity: 0.2; transform: scale(0.95); } 
+    }
+    @keyframes pulse4 { 
+      0% { opacity: 0.1; transform: scale(0.95); } 
+      50% { opacity: 0.3; transform: scale(1.15); } 
+      100% { opacity: 0.1; transform: scale(0.95); } 
+    }
+    
+    .halo { 
+      transform-origin: 500px 340px; 
+    }
+    .h1 { animation: pulse1 4s ease-in-out infinite; }
+    .h2 { animation: pulse2 4s ease-in-out infinite 0.5s; }
+    .h3 { animation: pulse3 4s ease-in-out infinite 1s; }
+    .h4 { animation: pulse4 4s ease-in-out infinite 1.5s; }
+  </style>
+
+  <rect width="1000" height="500" fill="url(#skyGrad)"/>
+
+  <circle cx="500" cy="340" r="180" fill="#f88fb0" class="halo h4" />
+  <circle cx="500" cy="340" r="130" fill="#f9a7c2" class="halo h3" />
+  <circle cx="500" cy="340" r="90" fill="#fad1db" class="halo h2" />
+  <circle cx="500" cy="340" r="55" fill="#ffe0e8" class="halo h1" />
+
+  <circle cx="500" cy="340" r="25" fill="#fff5e6"/>
+
+  <path d="M0,340 L80,270 L160,310 L250,260 L330,310 L410,270 L500,320 L580,260 L660,310 L750,250 L840,300 L930,240 L1000,290 L1000,500 L0,500 Z" fill="#802870" opacity="0.7"/>
+
+  <path d="M0,380 L120,300 L240,350 L380,310 L460,350 L600,290 L700,340 L850,270 L1000,350 L1000,500 L0,500 Z" fill="#581b5e"/>
+
+  <polygon points="380,360 620,360 750,500 250,500" fill="url(#lakeGrad)"/>
+  
+  <rect x="450" y="380" width="100" height="2" fill="#ffb1b1" opacity="0.4"/>
+  <rect x="470" y="395" width="60" height="2" fill="#ffb1b1" opacity="0.3"/>
+  <rect x="430" y="410" width="140" height="2" fill="#ffb1b1" opacity="0.2"/>
+
+  <path d="M0,400 L60,360 L100,380 L140,340 L180,370 L240,350 L300,390 L400,410 L350,500 L0,500 Z" fill="#290e40"/>
+  <path d="M0,440 L40,410 L90,430 L150,400 L220,440 L300,460 L280,500 L0,500 Z" fill="#160626"/>
+
+  <path d="M1000,360 L920,330 L860,370 L800,340 L720,380 L600,410 L650,500 L1000,500 Z" fill="#290e40"/>
+  <path d="M1000,420 L940,390 L850,430 L780,410 L700,460 L720,500 L1000,500 Z" fill="#160626"/>
+
+  <path d="M850,330 L840,360 L860,360 Z M850,310 L830,350 L870,350 Z M920,300 L910,330 L930,330 Z M920,280 L900,320 L940,320 Z M950,260 L930,310 L970,310 Z" fill="#160626"/>
+  <path d="M80,310 L70,350 L90,350 Z M80,290 L60,340 L100,340 Z M120,330 L110,370 L130,370 Z M120,310 L100,360 L140,360 Z" fill="#160626"/>
+
+  <g transform="translate(390, 395) scale(0.8)" fill="#160626">
+    <ellipse cx="20" cy="25" rx="15" ry="10" />
+    <path d="M30,20 C35,15 35,5 40,0 C45,0 48,2 45,6 C40,8 38,15 35,22 Z" />
+    <rect x="8" y="30" width="3" height="20" rx="1" />
+    <rect x="12" y="32" width="3" height="18" rx="1" />
+    <rect x="25" y="30" width="3" height="20" rx="1" />
+    <rect x="29" y="32" width="3" height="18" rx="1" />
+    <path d="M38,2 Q35,-5 38,-12 Q40,-15 42,-12 Q40,-8 40,2 Z" />
+    <path d="M42,0 Q45,-8 50,-10 Q52,-12 50,-8 Q48,-5 42,0 Z" />
+  </g>
+</svg>
