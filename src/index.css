@@ -7,7 +7,11 @@
   color: rgba(255, 255, 255, 0.87);
  /*background: linear-gradient(90deg, rgba(212, 0, 198, 1) 0%, rgba(80, 9, 121, 1) 35%, rgba(0, 0, 0, 1) 100%);*/
  background-image: url(test.svg);
- background-size: 100%;
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
